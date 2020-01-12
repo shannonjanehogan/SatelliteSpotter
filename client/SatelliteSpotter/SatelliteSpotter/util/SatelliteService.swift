@@ -24,6 +24,13 @@ struct SatObj: Codable {
     let lat: Double
     let lng: Double
     let velocity: Double
+    let name: String?
+    let countryOfOrigin: String?
+    let satOwner: String?
+    let comments: String?
+    let launchVehicle: String?
+    let dateOfLauch: String?
+    let users: String?
 }
 //enum SatObjKey: String, Decodable {
 //    case id
@@ -80,7 +87,14 @@ class SatelliteService {
                               range: satobj.range,
                               height: satobj.height,
                               geoCoord: GeoCoordinate(lat: satobj.lat, lon: satobj.lng),
-                              velocity: satobj.velocity
+                              velocity: satobj.velocity,
+                              name: satobj.name,
+                              countryOfOrigin: satobj.countryOfOrigin,
+                              satOwner: satobj.satOwner,
+                              comments: satobj.comments,
+                              launchVehicle: satobj.launchVehicle,
+                              dateOfLaunch: satobj.dateOfLauch,
+                              users: satobj.users
             )
             sats.append(s)
         }

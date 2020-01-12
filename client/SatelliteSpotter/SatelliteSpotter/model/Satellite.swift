@@ -24,6 +24,13 @@ struct Satellite {
     let height: Double?
     let geoCoord: GeoCoordinate?
     let velocity: Double?
+    let name: String?
+    let countryOfOrigin: String?
+    let satOwner: String?
+    let comments: String?
+    let launchVehicle: String?
+    let dateOfLaunch: String?
+    let users: String?
     
     var node: AnnotationNode?
     
@@ -36,7 +43,14 @@ struct Satellite {
         height h: Double? = nil,
         geoCoord coord: GeoCoordinate? = nil,
         velocity v: Double? = nil,
-        node: AnnotationNode? = nil) {
+        node: AnnotationNode? = nil,
+        name: String? = nil,
+        countryOfOrigin: String? = nil,
+        satOwner: String? = nil,
+        comments: String? = nil,
+        launchVehicle: String? = nil,
+        dateOfLaunch: String? = nil,
+        users: String? = nil) {
         
         self.noradId = nId
         self.tle = tle
@@ -47,6 +61,13 @@ struct Satellite {
         self.geoCoord = coord
         self.velocity = v
         self.node = node
+        self.name = name
+        self.countryOfOrigin = countryOfOrigin
+        self.satOwner = satOwner
+        self.comments = comments
+        self.launchVehicle = launchVehicle
+        self.dateOfLaunch = dateOfLaunch
+        self.users = users
     }
     
 }
