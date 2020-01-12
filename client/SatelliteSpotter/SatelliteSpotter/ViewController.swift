@@ -132,12 +132,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, LNTouchDelegate {
     }
     
     private func addSatelliteToARView(satellite: inout Satellite) {
-        let scene = SCNScene(named: "art.scnassets/satellite.scn")!
-        let satelliteNode = scene.rootNode.childNode(withName: "plane", recursively: false)
+//        let scene = SCNScene(named: "art.scnassets/satellite.scn")!
+//        let satelliteNode = scene.rootNode.childNode(withName: "plane", recursively: true)
         let geocoord = satellite.geoCoord!
         let coordinate = CLLocationCoordinate2D(latitude: geocoord.lat, longitude: geocoord.lon)
         let location = CLLocation(coordinate: coordinate, altitude: satellite.elevation! * 1000)
-        let image = UIImage(named: "satellite.png")!
+        let imageOptional = UIImage(named: "SatelliteIcon")
+        guard let image = imageOptional else {
+            NSLog("Not rendering")
+            return
+        }
+        
         let annotationNode: LocationAnnotationNode = LocationAnnotationNode(location: location, image: image)
         annotationNode.annotationNode.name = String(satellite.noradId)
         satellite.node = annotationNode.annotationNode
