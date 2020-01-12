@@ -8,6 +8,7 @@
 
 import Foundation
 import SceneKit
+import ARKit_CoreLocation
 
 struct GeoCoordinate {
     let lat: Double
@@ -16,6 +17,7 @@ struct GeoCoordinate {
 
 struct Satellite {
     let noradId: Int
+    let tle: String?
     let azimuth: Double?
     let elevation: Double?
     let range: Double?
@@ -23,19 +25,21 @@ struct Satellite {
     let geoCoord: GeoCoordinate?
     let velocity: Double?
     
-    let node: SCNNode
+    var node: AnnotationNode?
     
     init(
         noradId nId: Int = 0,
+        tle: String? = nil,
         azimuth az: Double? = nil,
         elevation ev: Double? = nil,
         range r: Double? = nil,
         height h: Double? = nil,
         geoCoord coord: GeoCoordinate? = nil,
         velocity v: Double? = nil,
-        node: SCNNode) {
+        node: AnnotationNode? = nil) {
         
         self.noradId = nId
+        self.tle = tle
         self.azimuth = az
         self.elevation = ev
         self.range = r
