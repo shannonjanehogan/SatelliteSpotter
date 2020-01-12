@@ -33,7 +33,7 @@ Helper Functions
 const runQueryWithParams = (queryScript, params) => {
    return pool.query(queryScript, params)
      .then((res) => {
-       console.log(res);
+      //  console.log(res);
        return res.rows;
        pool.end();
      })
@@ -47,7 +47,7 @@ const runQueryWithParams = (queryScript, params) => {
 const runQuery = (queryScript) => {
    return pool.query(queryScript)
      .then((res) => {
-       console.log(res);
+      //  console.log(res);
        return res.rows;
        pool.end();
      })

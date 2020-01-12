@@ -1,1 +1,1 @@
-SELECT * FROM Satellite WHERE s.noradNumber = $1;
+SELECT * FROM Satellite WHERE noradNumber = $1;

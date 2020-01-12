@@ -5,67 +5,18 @@ const database = require('./db/index.js');
 const app = express()
 const port = 3000
 
-const stubbedData = [{
-  // satellite compass heading from observer in degrees (0 = north, 180 = south)
-  azimuth: 294.5780478624994,
-  // satellite elevation from observer in degrees (90 is directly overhead)
-  elevation: 81.63903620330046,
-  // km distance from observer to spacecraft
-  range: 406.60211015810074,
-  // spacecraft altitude in km
-  height: 402.9082788620108,
-  // spacecraft latitude in degrees
-  lat: 34.45112876592785,
-  // spacecraft longitude in degrees
-  lng: -117.46176597710809,
-  // spacecraft velocity (relative to observer) in km/s
-  velocity: 7.675627442183371,
-  noradId: 4247,
-},
-{
-  // satellite compass heading from observer in degrees (0 = north, 180 = south)
-  azimuth: 294.5780478624994,
-  // satellite elevation from observer in degrees (90 is directly overhead)
-  elevation: 81.63903620330046,
-  // km distance from observer to spacecraft
-  range: 406.60211015810074,
-  // spacecraft altitude in km
-  height: 402.9082788620108,
-  // spacecraft latitude in degrees
-  lat: 34.45112876592785,
-  // spacecraft longitude in degrees
-  lng: -117.46176597710809,
-  // spacecraft velocity (relative to observer) in km/s
-  velocity: 7.675627442183371,
-  noradId: 4247,
-},
-{
-  // satellite compass heading from observer in degrees (0 = north, 180 = south)
-  azimuth: 294.5780478624994,
-  // satellite elevation from observer in degrees (90 is directly overhead)
-  elevation: 81.63903620330046,
-  // km distance from observer to spacecraft
-  range: 406.60211015810074,
-  // spacecraft altitude in km
-  height: 402.9082788620108,
-  // spacecraft latitude in degrees
-  lat: 34.45112876592785,
-  // spacecraft longitude in degrees
-  lng: -117.46176597710809,
-  // spacecraft velocity (relative to observer) in km/s
-  velocity: 7.675627442183371,
-  noradId: 4247,
-}];
-
 app.get('/', function (req, res) {
-  res.send(stubbedData);
+  res.send('SatelliteSpotter is up and running!');
 });
 
+// Returns all the satellites visible from the users location
 app.get('/satellites', async function (req, res) {
   const result = await getVisibleSatellites(req.query.lat, req.query.lon);
   res.send(result);
 });
 
+// Does a large fetch for all satellites in space, getting their current info and trajectory
+// Needs to be run daily
 app.get('/tles', function (req, res) {
   getDailyTLEs();
   res.sendStatus(200);
@@ -86,14 +37,12 @@ async function getDailyTLEs() {
         Date.now()
       ];
       await database.runQueryWithParams(sql, params);
-      console.log("database query got saved")
     }
     currPage++;
     if (response.data.view.next === response.data.view.last) {
       lastPage = true;
     }
   }
-  console.log("last response loop")
   const lastResponse = await axios.get(`http://data.ivanstanojevic.me/api/tle?page-size=100&page=${currPage}`);
   const lastArr = response.data.member;
   for (i = 0; i < lastArr.length; i++) {
@@ -115,6 +64,7 @@ async function getVisibleSatellites(lat, lon) {
     const tleObj = result[i];
     let error = false;
     let satInfo = {};
+    let norad;
     try {
       satInfo = tle.getSatelliteInfo(
         tleObj.tleval,         // Satellite TLE string or array.
@@ -123,16 +73,42 @@ async function getVisibleSatellites(lat, lon) {
         lon,              // Observer longitude (degrees)
         0               // Observer elevation (km)
       );
+      norad = tle.getCatalogNumber(tleObj.tleval);
     } catch {
       error = true;
     }
     if (!error) {
       if (satInfo.elevation > 45) {
+        const fetchSql = database.readFileHelper('select_satellite', 'queries');
+        const params = [norad];
+        const satelliteResult = await database.runQueryWithParams(fetchSql, params);
+
+        if (satelliteResult && satelliteResult.length) {
+          satInfo.name = satelliteResult[0].satname;
+          satInfo.comments = satelliteResult[0].miscellaneous;
+          satInfo.launchVehicle = satelliteResult[0].launchvehicle;
+          satInfo.dateOfLaunch = satelliteResult[0].dateoflaunch;
+          satInfo.expectedLifetime = satelliteResult[0].expectedlifetime;
+          satInfo.users = satelliteResult[0].users;
+          satInfo.countryOfOrigin = satelliteResult[0].countryoforigin;
+          satInfo.satOwner = satelliteResult[0].satowner;
+        } else {
+          satInfo.name = null;
+          satInfo.countryOfOrigin = null;
+          satInfo.satOwner = null;
+          satInfo.comments = null;
+          satInfo.launchVehicle = null;
+          satInfo.dateOfLaunch = null;
+          satInfo.expectedLifetime = null;
+          satInfo.users = null;
+        }
+        satInfo.noradId = norad;
         satInfo.tle = tleObj.tleval;
         nearSatellites.push(satInfo);
       }
     }
   }
+  console.log("END RESULT", nearSatellites);
   return nearSatellites;
 }
 
