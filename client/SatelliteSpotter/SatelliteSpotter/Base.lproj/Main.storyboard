@@ -55,16 +55,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="satellite-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ow2-CH-Gi9">
-                                                    <rect key="frame" x="20" y="11" width="334" height="143"/>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RfT-2N-yEg" customClass="AnimationView">
+                                                    <rect key="frame" x="67" y="11" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Ow2-CH-Gi9" firstAttribute="top" secondItem="ASD-bW-6Rt" secondAttribute="topMargin" id="JlY-pd-DHB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Ow2-CH-Gi9" secondAttribute="trailing" id="ZcP-QD-bLz"/>
-                                                <constraint firstItem="Ow2-CH-Gi9" firstAttribute="leading" secondItem="ASD-bW-6Rt" secondAttribute="leadingMargin" id="bXT-uc-jXg"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ow2-CH-Gi9" secondAttribute="bottom" id="eXJ-CF-UWi"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="cig-To-Dou" detailTextLabel="CZw-Lq-ZYJ" style="IBUITableViewCellStyleValue2" id="yJO-CP-pfV">
@@ -245,6 +241,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Satellite Details" id="MaL-Ki-bDQ"/>
                     <connections>
+                        <outlet property="animationView" destination="RfT-2N-yEg" id="n9v-7X-2qL"/>
                         <outlet property="comments" destination="C5J-8K-gVh" id="W3i-JF-o6s"/>
                         <outlet property="countryOfOrigin" destination="Y2N-q5-hGT" id="8T3-wU-JLy"/>
                         <outlet property="launchDate" destination="4ki-jb-NZg" id="LSv-Vz-mdq"/>
@@ -275,7 +272,4 @@
             <point key="canvasLocation" x="1080" y="113"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="satellite-2.png" width="384" height="384"/>
-    </resources>
 </document>

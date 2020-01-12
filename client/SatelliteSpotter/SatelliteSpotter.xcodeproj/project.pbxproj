@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B458F8023CBB15800983288 /* world-animationjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B458F7F23CBB15800983288 /* world-animationjson.json */; };
+		8BFFAD4D23CBAAB70072B8E8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFFAD4C23CBAAB70072B8E8 /* Lottie */; };
 		CA00229E23CA77D90057C366 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA00229D23CA77D90057C366 /* AppDelegate.swift */; };
 		CA0022A023CA77D90057C366 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CA00229F23CA77D90057C366 /* art.scnassets */; };
 		CA0022A223CA77D90057C366 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0022A123CA77D90057C366 /* ViewController.swift */; };
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B458F7F23CBB15800983288 /* world-animationjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "world-animationjson.json"; path = "../../../../../Downloads/world-animationjson.json"; sourceTree = "<group>"; };
 		CA00229A23CA77D90057C366 /* SatelliteSpotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SatelliteSpotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA00229D23CA77D90057C366 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA00229F23CA77D90057C366 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA7A82F823CB3914008AF611 /* ARCL in Frameworks */,
+				8BFFAD4D23CBAAB70072B8E8 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +116,7 @@
 				CA7A82EC23CAB107008AF611 /* util */,
 				CA7A82E923CAA6CC008AF611 /* model */,
 				CA00229D23CA77D90057C366 /* AppDelegate.swift */,
+				8B458F7F23CBB15800983288 /* world-animationjson.json */,
 				CA00229F23CA77D90057C366 /* art.scnassets */,
 				CA0022A123CA77D90057C366 /* ViewController.swift */,
 				CA0022A323CA77D90057C366 /* Main.storyboard */,
@@ -176,6 +181,7 @@
 			name = SatelliteSpotter;
 			packageProductDependencies = (
 				CA7A82F723CB3914008AF611 /* ARCL */,
+				8BFFAD4C23CBAAB70072B8E8 /* Lottie */,
 			);
 			productName = SatelliteSpotter;
 			productReference = CA00229A23CA77D90057C366 /* SatelliteSpotter.app */;
@@ -251,6 +257,7 @@
 			mainGroup = CA00229123CA77D90057C366;
 			packageReferences = (
 				CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */,
+				8BFFAD4B23CBAAB70072B8E8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = CA00229B23CA77D90057C366 /* Products */;
 			projectDirPath = "";
@@ -269,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0022A023CA77D90057C366 /* art.scnassets in Resources */,
+				8B458F8023CBB15800983288 /* world-animationjson.json in Resources */,
 				CA0022AA23CA77DB0057C366 /* LaunchScreen.storyboard in Resources */,
 				CA0022A723CA77DB0057C366 /* Assets.xcassets in Resources */,
 				CA0022A523CA77D90057C366 /* Main.storyboard in Resources */,
@@ -632,6 +640,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8BFFAD4B23CBAAB70072B8E8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.5;
+			};
+		};
 		CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ProjectDent/ARKit-CoreLocation.git";
@@ -643,6 +659,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8BFFAD4C23CBAAB70072B8E8 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BFFAD4B23CBAAB70072B8E8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		CA7A82F723CB3914008AF611 /* ARCL */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */;

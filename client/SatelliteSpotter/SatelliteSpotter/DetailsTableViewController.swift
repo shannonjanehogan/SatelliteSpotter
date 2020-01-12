@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class DetailsTableViewController: UITableViewController {
 
@@ -19,10 +20,12 @@ class DetailsTableViewController: UITableViewController {
     @IBOutlet weak var users: UILabel!
     @IBOutlet weak var comments: UILabel!
     
+    @IBOutlet weak var animationView: AnimationView!
     var satellite: Satellite?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        playAnimation()
         fillFeatures()
 //        self.nameLabel.text = satellite!.name!
         // Uncomment the following line to preserve selection between presentations
@@ -67,6 +70,13 @@ class DetailsTableViewController: UITableViewController {
             self.satelliteId.text = String(sat.noradId)
             
         }
+    }
+    
+    func playAnimation(){
+        animationView.animation = Animation.named("world-animationjson")
+        
+//        self.animationView.loopAnimation = true
+       animationView.play()
     }
 
 }
