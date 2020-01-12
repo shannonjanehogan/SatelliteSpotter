@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ARCL",
+        "repositoryURL": "https://github.com/ProjectDent/ARKit-CoreLocation.git",
+        "state": {
+          "branch": null,
+          "revision": "42abf4f47b191b153d4bfe4509f15617aadd837d",
+          "version": "1.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,11 @@
 		CA0022AA23CA77DB0057C366 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA0022A823CA77DB0057C366 /* LaunchScreen.storyboard */; };
 		CA0022B523CA77DB0057C366 /* SatelliteSpotterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0022B423CA77DB0057C366 /* SatelliteSpotterTests.swift */; };
 		CA0022C023CA77DB0057C366 /* SatelliteSpotterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0022BF23CA77DB0057C366 /* SatelliteSpotterUITests.swift */; };
+		CA7A82EB23CAA8D5008AF611 /* Satellite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82EA23CAA8D5008AF611 /* Satellite.swift */; };
+		CA7A82EE23CAB116008AF611 /* LocationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82ED23CAB116008AF611 /* LocationBrain.swift */; };
+		CA7A82F023CAB7FE008AF611 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82EF23CAB7FE008AF611 /* DetailsTableViewController.swift */; };
+		CA7A82F223CABC8D008AF611 /* SatelliteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82F123CABC8D008AF611 /* SatelliteService.swift */; };
+		CA7A82F523CAFA58008AF611 /* ARCL in Frameworks */ = {isa = PBXBuildFile; productRef = CA7A82F423CAFA58008AF611 /* ARCL */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,10 @@
 		CA0022BB23CA77DB0057C366 /* SatelliteSpotterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatelliteSpotterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0022BF23CA77DB0057C366 /* SatelliteSpotterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteSpotterUITests.swift; sourceTree = "<group>"; };
 		CA0022C123CA77DB0057C366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA7A82EA23CAA8D5008AF611 /* Satellite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Satellite.swift; sourceTree = "<group>"; };
+		CA7A82ED23CAB116008AF611 /* LocationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBrain.swift; sourceTree = "<group>"; };
+		CA7A82EF23CAB7FE008AF611 /* DetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
+		CA7A82F123CABC8D008AF611 /* SatelliteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7A82F523CAFA58008AF611 /* ARCL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +109,8 @@
 		CA00229C23CA77D90057C366 /* SatelliteSpotter */ = {
 			isa = PBXGroup;
 			children = (
+				CA7A82EC23CAB107008AF611 /* util */,
+				CA7A82E923CAA6CC008AF611 /* model */,
 				CA00229D23CA77D90057C366 /* AppDelegate.swift */,
 				CA00229F23CA77D90057C366 /* art.scnassets */,
 				CA0022A123CA77D90057C366 /* ViewController.swift */,
@@ -106,6 +118,7 @@
 				CA0022A623CA77DB0057C366 /* Assets.xcassets */,
 				CA0022A823CA77DB0057C366 /* LaunchScreen.storyboard */,
 				CA0022AB23CA77DB0057C366 /* Info.plist */,
+				CA7A82EF23CAB7FE008AF611 /* DetailsTableViewController.swift */,
 			);
 			path = SatelliteSpotter;
 			sourceTree = "<group>";
@@ -128,6 +141,23 @@
 			path = SatelliteSpotterUITests;
 			sourceTree = "<group>";
 		};
+		CA7A82E923CAA6CC008AF611 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				CA7A82EA23CAA8D5008AF611 /* Satellite.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		CA7A82EC23CAB107008AF611 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				CA7A82ED23CAB116008AF611 /* LocationBrain.swift */,
+				CA7A82F123CABC8D008AF611 /* SatelliteService.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +174,9 @@
 			dependencies = (
 			);
 			name = SatelliteSpotter;
+			packageProductDependencies = (
+				CA7A82F423CAFA58008AF611 /* ARCL */,
+			);
 			productName = SatelliteSpotter;
 			productReference = CA00229A23CA77D90057C366 /* SatelliteSpotter.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +249,9 @@
 				Base,
 			);
 			mainGroup = CA00229123CA77D90057C366;
+			packageReferences = (
+				CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */,
+			);
 			productRefGroup = CA00229B23CA77D90057C366 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,7 +297,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0022A223CA77D90057C366 /* ViewController.swift in Sources */,
+				CA7A82F223CABC8D008AF611 /* SatelliteService.swift in Sources */,
+				CA7A82F023CAB7FE008AF611 /* DetailsTableViewController.swift in Sources */,
 				CA00229E23CA77D90057C366 /* AppDelegate.swift in Sources */,
+				CA7A82EB23CAA8D5008AF611 /* Satellite.swift in Sources */,
+				CA7A82EE23CAB116008AF611 /* LocationBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +630,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProjectDent/ARKit-CoreLocation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA7A82F423CAFA58008AF611 /* ARCL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */;
+			productName = ARCL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA00229223CA77D90057C366 /* Project object */;
 }
