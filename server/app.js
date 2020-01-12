@@ -61,9 +61,9 @@ app.get('/', function (req, res) {
   res.send(stubbedData);
 });
 
-app.get('/test', function (req, res) {
-  getSatellites(49.2827, 123.1207, 0.5);
-  res.send(501);
+app.get('/satellites', async function (req, res) {
+  const result = await getVisibleSatellites(req.query.lat, req.query.lon);
+  res.send(result);
 });
 
 app.get('/tles', function (req, res) {
@@ -80,17 +80,20 @@ async function getDailyTLEs() {
     const arr = response.data.member;
     for (i = 0; i < arr.length; i++) {
       let satellite = arr[i];
+      let tle = satellite.line1 + "\n" + satellite.line2;
       const params = [
-        arr.line1 + arr.line2,
+        tle,
         Date.now()
       ];
       await database.runQueryWithParams(sql, params);
+      console.log("database query got saved")
     }
     currPage++;
-    if (response.data.view.next == response.data.view.last) {
+    if (response.data.view.next === response.data.view.last) {
       lastPage = true;
     }
   }
+  console.log("last response loop")
   const lastResponse = await axios.get(`http://data.ivanstanojevic.me/api/tle?page-size=100&page=${currPage}`);
   const lastArr = response.data.member;
   for (i = 0; i < lastArr.length; i++) {
@@ -103,24 +106,34 @@ async function getDailyTLEs() {
   };
 }
 
-async function getSatellites(lat, lon, elevation) {
-  try {
-    const sql = database.readFileHelper('select_tle', 'queries');
-    const result = await database.runQuery(sql);
-    let responseArray = [];
-    const allVisible = getVisibleSatellites({
-      observerLat: lat,
-      observerLng: lon,
-      observerHeight: 0,
-      // Array of 3-line TLE arrays.
-      tles: row.tleval,
-      elevationThreshold: elevation,
-      timestampMS: row.fetchTime
-    });
-    return allVisible;
-  } catch (error) {
-    console.error(error);
+async function getVisibleSatellites(lat, lon) {
+  const sql = database.readFileHelper('select_tle', 'queries');
+  const result = await database.runQuery(sql);
+  const nearSatellites = [];
+
+  for (i = 0; i < result.length; i++) {
+    const tleObj = result[i];
+    let error = false;
+    let satInfo = {};
+    try {
+      satInfo = tle.getSatelliteInfo(
+        tleObj.tleval,         // Satellite TLE string or array.
+        tleObj.fetchTime,  // Timestamp (ms)
+        lat,                // Observer latitude (degrees)
+        lon,              // Observer longitude (degrees)
+        0               // Observer elevation (km)
+      );
+    } catch {
+      error = true;
+    }
+    if (!error) {
+      if (satInfo.elevation > 45) {
+        satInfo.tle = tleObj.tleval;
+        nearSatellites.push(satInfo);
+      }
+    }
   }
+  return nearSatellites;
 }
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

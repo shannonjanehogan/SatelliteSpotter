@@ -1,4 +1,4 @@
-INSERT INTO tle (threelinetle , fetchTime) VALUES (
+INSERT INTO tle (tleval , fetchTime) VALUES (
   $1,
-  $2,
-) RETURNING noradNumber;
+  $2
+);

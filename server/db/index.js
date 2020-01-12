@@ -3,7 +3,10 @@ const fs = require("fs");
 require("dotenv").config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  host: 'localhost',
+  user: 'postgres',
+  password: 'acorn',
+  database: 'satellite-db'
 });
 
 pool.on("connect", () => {
@@ -21,7 +24,6 @@ function createTables() {
 async function selectQuery(queryFile) {
   const dropTablesScript = readFileHelper(queryFile, "queries");
   const result = await runQuery(dropTablesScript);
-  console.log(result.rows);
   return result.rows;
 }
 
