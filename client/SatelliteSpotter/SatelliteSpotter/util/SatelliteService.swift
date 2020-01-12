@@ -15,6 +15,7 @@ enum NetworkError: Error {
 
 struct SatObj: Codable {
     let noradId: Int
+    let tle: String
 //    let name: String
     let azimuth: Double
     let elevation: Double
@@ -38,16 +39,21 @@ struct SatObj: Codable {
 
 class SatelliteService {
     
-    var satellites: [Any] = []
+    var satellites: [SatObj] = []
+    var viewController: ViewController;
     
-    func doRequest() {
+    init(viewController: ViewController) {
+        self.viewController = viewController
+    }
+    
+    func doRequest(lat: Double, lon: Double) {
         let session = URLSession.shared
-        guard let url = URL(string: "http://dhcp-206-87-194-53.ubcsecure.wireless.ubc.ca:3000/") else {
+        guard let url = URL(string: String(format: "http://Shannons-MacBook-Pro-3.local:3000/satellites?lat=%f&lon=%f", lat, lon)) else {
             return 
         }
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                print("Server error!")
+                print("There was an error communicating with the server")
                 return
             }
             
@@ -55,14 +61,29 @@ class SatelliteService {
                 return
             }
             let decoder = JSONDecoder()
-            let objs = try! decoder.decode([SatObj].self, from: data)
-            self.satellites = objs
+            let objs: [SatObj] = try! decoder.decode([SatObj].self, from: data)
+            var satellites: [Satellite] = self.toModels(satobjs: objs)
+            self.viewController.satellites = satellites
+            self.viewController.loadAllSatellites(satellites: satellites)
         })
         
         task.resume()
     }
     
-    func toModels() -> [Satellite] {
-        
+    func toModels(satobjs: [SatObj]) -> [Satellite] {
+        var sats: [Satellite] = [];
+        for satobj: SatObj in satobjs {
+            var s = Satellite(noradId: satobj.noradId,
+                              tle: satobj.tle,
+                              azimuth: satobj.azimuth,
+                              elevation: satobj.elevation,
+                              range: satobj.range,
+                              height: satobj.height,
+                              geoCoord: GeoCoordinate(lat: satobj.lat, lon: satobj.lng),
+                              velocity: satobj.velocity
+            )
+            sats.append(s)
+        }
+        return sats
     }
 }

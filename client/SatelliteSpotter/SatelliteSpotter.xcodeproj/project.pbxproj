@@ -19,7 +19,7 @@
 		CA7A82EE23CAB116008AF611 /* LocationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82ED23CAB116008AF611 /* LocationBrain.swift */; };
 		CA7A82F023CAB7FE008AF611 /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82EF23CAB7FE008AF611 /* DetailsTableViewController.swift */; };
 		CA7A82F223CABC8D008AF611 /* SatelliteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7A82F123CABC8D008AF611 /* SatelliteService.swift */; };
-		CA7A82F523CAFA58008AF611 /* ARCL in Frameworks */ = {isa = PBXBuildFile; productRef = CA7A82F423CAFA58008AF611 /* ARCL */; };
+		CA7A82F823CB3914008AF611 /* ARCL in Frameworks */ = {isa = PBXBuildFile; productRef = CA7A82F723CB3914008AF611 /* ARCL */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA7A82F523CAFA58008AF611 /* ARCL in Frameworks */,
+				CA7A82F823CB3914008AF611 /* ARCL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +175,7 @@
 			);
 			name = SatelliteSpotter;
 			packageProductDependencies = (
-				CA7A82F423CAFA58008AF611 /* ARCL */,
+				CA7A82F723CB3914008AF611 /* ARCL */,
 			);
 			productName = SatelliteSpotter;
 			productReference = CA00229A23CA77D90057C366 /* SatelliteSpotter.app */;
@@ -250,7 +250,7 @@
 			);
 			mainGroup = CA00229123CA77D90057C366;
 			packageReferences = (
-				CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */,
+				CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */,
 			);
 			productRefGroup = CA00229B23CA77D90057C366 /* Products */;
 			projectDirPath = "";
@@ -632,20 +632,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */ = {
+		CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ProjectDent/ARKit-CoreLocation.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
+				branch = develop;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CA7A82F423CAFA58008AF611 /* ARCL */ = {
+		CA7A82F723CB3914008AF611 /* ARCL */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA7A82F323CAFA58008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */;
+			package = CA7A82F623CB3914008AF611 /* XCRemoteSwiftPackageReference "ARKit-CoreLocation" */;
 			productName = ARCL;
 		};
 /* End XCSwiftPackageProductDependency section */
