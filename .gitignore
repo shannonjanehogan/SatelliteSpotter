@@ -70,6 +70,7 @@ Carthage/Build/
 Dependencies/
 .accio/
 .env
+server/postgres-data/
 
 # fastlane
 #
