@@ -177,9 +177,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, LNTouchDelegate {
         self.performSegue(withIdentifier: "openDetails", sender: selected)
     }
     
-
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("in prepare")
+        if segue.identifier == "openDetails" {
+            print("here is controller")
+            print(segue.destination)
+            print("end")
+            if let navController = segue.destination as? UINavigationController {
+                if let detailViewController = navController.topViewController as? DetailsTableViewController {
+                    print("here")
+                    if let satellite = sender as? Satellite {
+                        print("In satellite")
+                        detailViewController.satellite = satellite
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension ViewController : LocationBrainDelegate {
