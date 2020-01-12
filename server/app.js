@@ -84,27 +84,31 @@ async function getVisibleSatellites(lat, lon) {
         const satelliteResult = await database.runQueryWithParams(fetchSql, params);
 
         if (satelliteResult && satelliteResult.length) {
-          satInfo.name = satelliteResult[0].satname;
-          satInfo.comments = satelliteResult[0].miscellaneous;
-          satInfo.launchVehicle = satelliteResult[0].launchvehicle;
-          satInfo.dateOfLaunch = satelliteResult[0].dateoflaunch;
-          satInfo.expectedLifetime = satelliteResult[0].expectedlifetime;
-          satInfo.users = satelliteResult[0].users;
-          satInfo.countryOfOrigin = satelliteResult[0].countryoforigin;
-          satInfo.satOwner = satelliteResult[0].satowner;
-        } else {
-          satInfo.name = null;
-          satInfo.countryOfOrigin = null;
-          satInfo.satOwner = null;
-          satInfo.comments = null;
-          satInfo.launchVehicle = null;
-          satInfo.dateOfLaunch = null;
-          satInfo.expectedLifetime = null;
-          satInfo.users = null;
+          satInfo.name = satelliteResult[0].satname || "N/A";
+          satInfo.comments = satelliteResult[0].miscellaneous || "N/A";
+          satInfo.launchVehicle = satelliteResult[0].launchvehicle || "N/A";
+          satInfo.dateOfLaunch = satelliteResult[0].dateoflaunch || "N/A";
+          satInfo.expectedLifetime = satelliteResult[0].expectedlifetime || "N/A";
+          satInfo.users = satelliteResult[0].users || "N/A";
+          satInfo.countryOfOrigin = satelliteResult[0].countryoforigin || "N/A";
+          satInfo.satOwner = satelliteResult[0].satowner || "N/A";
+          satInfo.noradId = norad;
+          satInfo.tle = tleObj.tleval;
+          nearSatellites.push(satInfo);
         }
-        satInfo.noradId = norad;
-        satInfo.tle = tleObj.tleval;
-        nearSatellites.push(satInfo);
+        // } else {
+        //   satInfo.name = null;
+        //   satInfo.countryOfOrigin = null;
+        //   satInfo.satOwner = null;
+        //   satInfo.comments = null;
+        //   satInfo.launchVehicle = null;
+        //   satInfo.dateOfLaunch = null;
+        //   satInfo.expectedLifetime = null;
+        //   satInfo.users = null;
+        // }
+        // satInfo.noradId = norad;
+        // satInfo.tle = tleObj.tleval;
+        // nearSatellites.push(satInfo);
       }
     }
   }
