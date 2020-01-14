@@ -55,7 +55,7 @@ class SatelliteService {
     
     func doRequest(lat: Double, lon: Double) {
         let session = URLSession.shared
-        guard let url = URL(string: String(format: "http://Shannons-MacBook-Pro-3.local:3000/satellites?lat=%f&lon=%f", lat, lon)) else {
+        guard let url = URL(string: String(format: "http://35.193.101.67:80/satellites?lat=%f&lon=%f", lat, lon)) else {
             return 
         }
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
