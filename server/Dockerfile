@@ -1,7 +1,5 @@
-# A node docker image with SatelliteSpotter
-# Specify the path to the server directory at WORKDIR below
 FROM node:10
-WORKDIR <path-to-server-directory>
+WORKDIR /home/regmcdonald95/github/SatelliteSpotter/server
 COPY package*.json ./
 RUN npm install
 COPY . .

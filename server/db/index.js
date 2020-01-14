@@ -3,9 +3,9 @@ const fs = require("fs");
 require("dotenv").config();
 
 const pool = new Pool({
-  host: 'localhost',
+  host: 'sat-serv-db',
   user: 'postgres',
-  password: 'acorn',
+  password: 'password',
   database: 'satellite-db'
 });
 
