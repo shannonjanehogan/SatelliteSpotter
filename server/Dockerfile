@@ -1,5 +1,5 @@
 FROM node:10
-WORKDIR /home/regmcdonald95/github/SatelliteSpotter/server
+WORKDIR <add dir here>
 COPY package*.json ./
 RUN npm install
 COPY . .
