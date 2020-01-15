@@ -1,4 +1,4 @@
-DROP TABLE Satellite;
+DROP TABLE IF EXISTS Satellite;
 
 CREATE TABLE Satellite (
 	satName varchar,
